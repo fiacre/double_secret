@@ -69,7 +69,7 @@ def run_anneal(cities):
 
     while state[0] != 'New York City':
         state = state[1:] + state[:1]  # rotate NYC to start
-    print("%i mile route:" % e)
+    print("%i km route:" % e)
     print(state)
     for city in state:
         print("\t", city)
