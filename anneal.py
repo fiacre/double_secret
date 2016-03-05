@@ -7,7 +7,7 @@ import math
 import sys
 import time
 import random
-import signal
+# import signal
 import pickle
 import datetime
 import abc
@@ -46,9 +46,9 @@ class Annealer(object):
     """
 
     __metaclass__ = abc.ABCMeta
-    Tmax = 29999.9
+    Tmax = 50000.0
     Tmin = 2.5
-    steps = 50000
+    steps = 100000
     updates = 100
     copy_strategy = 'deepcopy'
     user_exit = False
@@ -64,7 +64,7 @@ class Annealer(object):
             raise ValueError('No valid values supplied for neither \
             initial_state nor load_state')
 
-        signal.signal(signal.SIGINT, self.set_user_exit)
+        # signal.signal(signal.SIGINT, self.set_user_exit)
 
     def save_state(self, fname=None):
         """Saves state"""

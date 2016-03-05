@@ -2,7 +2,6 @@ import random
 import math
 from simanneal import Annealer
 
-
 def parse_cities(json_data):
     cities = {}
     for k in json_data.keys():
@@ -11,9 +10,14 @@ def parse_cities(json_data):
         cities[k] = (lat, lon)
     return cities
 
+"""
+everything below was freely stolen from  
+https://github.com/perrygeo/simanneal
+"""
+
 def distance(a, b):
     """Calculates distance between two latitude-longitude coordinates."""
-    R = 3963  # radius of Earth (miles)
+    R = 6371.0  # radius of Earth (km)
     lat1, lon1 = math.radians(a[0]), math.radians(a[1])
     lat2, lon2 = math.radians(b[0]), math.radians(b[1])
     return math.acos(math.sin(lat1) * math.sin(lat2) +
@@ -28,7 +32,7 @@ class TravellingSalesmanProblem(Annealer):
     # pass extra data (the distance matrix) into the constructor
     def __init__(self, state, distance_matrix):
         self.distance_matrix = distance_matrix
-        super(TravellingSalesmanProblem, self).__init__(state)  # important! 
+        super().__init__(state)
 
     def move(self):
         """Swaps two cities in the route."""
